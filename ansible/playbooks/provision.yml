@@ -1,0 +1,9 @@
+- name: Provision EC2 Instance
+- ec2:
+    key_name: boilerplate_ecs
+    instance_type: t2.micro
+    image: ami-123456
+    wait: yes
+    group: webserver
+    count: 1
+    assign_public_ip: yes

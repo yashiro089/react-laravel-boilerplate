@@ -1,0 +1,21 @@
+- name: Create task definition
+  ecs_taskdefinition:
+    containers:
+    - name: react-laravel-boilerplate
+      cpu: 10
+      essential: true
+      image: "httpd:2.4"
+      memory: 300
+      mountPoints:
+      - containerPath: /usr/local/apache2/htdocs
+        sourceVolume: my-vol
+      portMappings:
+      - containerPort: 80
+        hostPort: 80
+      logConfiguration:
+        logDriver: awslogs
+        options:
+          awslogs-group: ecs
+          awslogs-region: us-west-2
+    state: present
+  register: task_output
